@@ -1,7 +1,7 @@
 {
   "name": "generator-mangrove-module",
   "version": "0.1.0",
-  "description": "A generator for Yeoman to generate settups for a module that includes grunt, bower, npm, requirejs, connect,  git, sinon, mocha, chai, mocha-phantomjs",
+  "description": "A Yeoman generator for modules with requirejs, grunt, bower, connect,  mocha, sinon, chai, mocha-phantomjs",
   "keywords": [
     "yeoman-generator",
     "requirejs",

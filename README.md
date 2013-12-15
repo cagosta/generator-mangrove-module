@@ -1,9 +1,44 @@
 # generator-mangrove-module [![Build Status](https://secure.travis-ci.org/cagosta/generator-mangrove-module.png?branch=master)](https://travis-ci.org/cagosta/generator-mangrove-module)
 
-A generator for [Yeoman](http://yeoman.io).
+A [Yeoman](http://yeoman.io) generator for modules with with requirejs, grunt, bower, connect, live-reload, mocha, sinon, chai, mocha-phantomjs  
 
 
 ## Getting Started
+
+
+### Install  
+
+```
+$ npm install -g yo  
+$ mkdir module_name  
+$ yo mangrove-module  
+```
+You can then start the server by typing: 
+
+```
+$ grunt server 
+```
+
+
+### Test 
+
+Run your test suites with:
+```
+$ grunt test 
+```
+
+In fact, grunt test is just an alias for   
+```
+$ grunt headless_test
+```
+It will run your tests in a headless browser (phantomjs) and mocha
+
+If you want to run your tests in the browser, go to ./test/index.html
+or run 
+```
+$ grunt browser_test
+```
+
 
 ### What is Yeoman?
 
