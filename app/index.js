@@ -46,7 +46,7 @@ MangroveModuleGenerator.prototype.app = function app() {
     this.copy( '_package.json', 'package.json' )
     this.copy( '_bower.json', 'bower.json' )
     this.copy( 'gitignore', 'gitignore' )
-
+    this.copy( 'travis.yml', '.travis.yml')
 
 
     this.copy( 'Gruntfile.js', 'Gruntfile.js' )
