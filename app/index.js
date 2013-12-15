@@ -1,10 +1,11 @@
 'use strict'
-var util = require( 'util' )
-var path = require( 'path' )
-var yeoman = require( 'yeoman-generator' )
+var util = require( 'util' ),
+    path = require( 'path' ),
+    yeoman = require( 'yeoman-generator' );
 
 
 var MangroveModuleGenerator = module.exports = function MangroveModuleGenerator( args, options, config ) {
+    
     yeoman.generators.Base.apply( this, arguments )
 
     this.on( 'end', function() {
@@ -19,45 +20,53 @@ var MangroveModuleGenerator = module.exports = function MangroveModuleGenerator(
 util.inherits( MangroveModuleGenerator, yeoman.generators.Base )
 
 MangroveModuleGenerator.prototype.askFor = function askFor() {
-    var cb = this.async()
-
-    // have Yeoman greet the user.
-    console.log( this.yeoman )
-
-    var prompts = [ {
-        name: 'moduleName',
-        message: 'Would you like call your module?',
-        default: 'mangrove_module'
-  } ]
+    var cb = this.async(),
+        prompts = [ {
+            name: 'moduleName',
+            message: 'Would you like call your module?',
+            default: 'mangrove_module'
+        }, {
+            name: 'githubUser',
+            message: 'What is your github user name ?',
+            default: 'cagosta'
+        } ];
 
     this.prompt( prompts, function( props ) {
         this.moduleName = props.moduleName
+        this.githubUser = props.githubUser
+        this.githubPath = this.githubUser + '/' + this.moduleName
         cb()
-
     }.bind( this ) )
+
 }
 
-MangroveModuleGenerator.prototype.app = function app() {
 
-    this.mkdir( 'app' )
-    this.template( 'app/_module.js', 'app/' + this.moduleName + '.js' )
+MangroveModuleGenerator.prototype.app = function() {
 
+    this.makeRootFiles()
+    this.makeAppFiles()
+    this.makeTestFiles()
+
+}
+
+MangroveModuleGenerator.prototype.makeRootFiles = function() {
     this.mkdir( 'documentation' )
-    this.copy( '_package.json', 'package.json' )
-    this.copy( '_bower.json', 'bower.json' )
-    this.copy( 'gitignore', 'gitignore' )
-    this.copy( 'travis.yml', '.travis.yml')
 
+    this.copy( '_package.json', 'package.json' )
+    this.template( '_bower.json', 'bower.json' )
+    this.template( '_config.json', 'config.json' )
+    this.copy( 'gitignore', '.gitignore' )
+    this.copy( 'travis.yml', '.travis.yml' )
 
     this.copy( 'Gruntfile.js', 'Gruntfile.js' )
     this.template( '_README.md', 'README.md' )
 
+}
 
-    this.template( '_bower.json', 'bower.json' )
-    this.template( '_config.json', 'config.json' )
-    this.template( '_package.json', 'package.json' )
 
-    this.makeTestFiles()
+MangroveModuleGenerator.prototype.makeAppFiles = function() {
+    this.mkdir( 'app' )
+    this.template( 'app/_module.js', 'app/' + this.moduleName + '.js' )
 
 }
 

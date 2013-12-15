@@ -14,6 +14,18 @@
         "mime": "~1.2.11",
         "rimraf": "~2.2.5"
     },
+    "homepage": "https://github.com/<%= githubPath %>",
+    "bugs": "https://github.com/<%= githubPath %>/issues",
+    "author": {
+        "name": "",
+        "email": "",
+        "url": "https://github.com/<%= githubUser %>"
+    },
+    "main": "app/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/<% githubPath %>.git"
+    },
     "licenses": [
         {
             "type": "MIT"

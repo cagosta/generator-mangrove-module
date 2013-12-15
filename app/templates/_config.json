@@ -1,3 +1,4 @@
 {
-  "name": "<%= moduleName %>"
+  "moduleName": "<%= moduleName %>",
+  "githubUser": "<%= githubUser %>"
 }
