@@ -23,7 +23,6 @@ describe('mangrove-module generator', function () {
         var expected = [
             // add files you expect to exist here.
             '.jshintrc',
-            '.editorconfig'
         ];
 
         helpers.mockPrompt(this.app, {

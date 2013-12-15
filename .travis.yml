@@ -5,4 +5,5 @@ node_js:
 before_install:
   - currentfolder=${PWD##*/}
   - if [ "$currentfolder" != 'generator-mangrove-module' ]; then cd .. && eval "mv $currentfolder generator-mangrove-module" && cd generator-mangrove-module; fi
-
+script:
+  - mocha
