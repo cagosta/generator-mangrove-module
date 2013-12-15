@@ -1,0 +1,43 @@
+{
+  "name": "generator-mangrove-module",
+  "version": "0.1.0",
+  "description": "A generator for Yeoman to generate settups for a module that includes grunt, bower, npm, requirejs, connect,  git, sinon, mocha, chai, mocha-phantomjs",
+  "keywords": [
+    "yeoman-generator",
+    "requirejs",
+    "mangrove"
+  ],
+  "homepage": "https://github.com/cagosta/generator-mangrove-module",
+  "bugs": "https://github.com/cagosta/generator-mangrove-module/issues",
+  "author": {
+    "name": "cyril agosta",
+    "email": "cyril.agosta@gmail.com",
+    "url": "https://github.com/cagosta"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cagosta/generator-mangrove-module.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.14.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
