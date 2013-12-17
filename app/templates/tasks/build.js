@@ -47,8 +47,7 @@ Builder.prototype = {
     setRequirejsConfig: function() {
 
         this.mainConfigFile = 'app/standalone.js'
-        this.name = '<%= moduleName %>/standalone'
-        this.baseUrl = __dirname + '/../app'
+        this.name = '<%= module.moduleName %>/standalone'
 
         this.grunt.config.set( 'requirejs', {
 
@@ -56,7 +55,6 @@ Builder.prototype = {
 
                 options: {
                     mainConfigFile: this.mainConfigFile,
-                    baseUrl: this.baseUrl,
                     optimize: 'none',
                     wrap: true,
                     out: this.getStandalonePath(),
@@ -70,7 +68,6 @@ Builder.prototype = {
 
                 options: {
                     mainConfigFile: this.mainConfigFile,
-                    baseUrl: this.baseUrl,
                     optimize: 'uglify2',
                     wrap: true,
                     out: this.getStandaloneMinPath(),
