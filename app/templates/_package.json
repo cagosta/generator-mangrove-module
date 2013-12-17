@@ -1,5 +1,6 @@
 {
     "name": "<%= moduleName %>",
+    "version": "0.0.1",
     "private": true,
     "devDependencies": {
         "grunt": "~0.4.x",
@@ -11,8 +12,11 @@
         "matchdep": "~0.1.2",
         "connect-livereload": "~0.1.3",
         "grunt-exec": "~0.4.2",
+        "grunt-release": "~0.6.0",
         "mime": "~1.2.11",
-        "rimraf": "~2.2.5"
+        "rimraf": "~2.2.5",
+        "grunt-contrib-requirejs": "~0.4.1",
+        "grunt-text-replace": "~0.3.10"
     },
     "homepage": "https://github.com/<%= githubPath %>",
     "bugs": "https://github.com/<%= githubPath %>/issues",
@@ -32,7 +36,8 @@
         }
     ],
     "scripts": {
-        "postinstall": "grunt postinstall"
+        "postinstall": "grunt postinstall",
+        "test": "grunt test"
     },
     "engines": {
         "node": ">=0.8.0"

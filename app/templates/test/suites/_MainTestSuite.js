@@ -1,13 +1,13 @@
 define( [
     '<%= moduleName%>/<%=moduleName%>'
- ], function(<%= moduleName %>) {
+ ], function( <%= moduleName %> ) {
 
     return function() {
 
-        describe( '<%= moduleName %>/<%= moduleName%>', function() {
+        describe( '<%= moduleName %>/<%= moduleName %>', function() {
 
             it( 'should load without blowing', function() {
-                expect(<%=moduleName%>).to.exist
+                expect( <%= moduleName %> ).to.exist
             } )
 
         } )

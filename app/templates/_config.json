@@ -1,4 +1,6 @@
 {
   "moduleName": "<%= moduleName %>",
-  "githubUser": "<%= githubUser %>"
+  "githubUser": "<%= githubUser %>",
+  "githubPath": "<%= githubPath %>",
+  "livereloadPort": 35729
 }

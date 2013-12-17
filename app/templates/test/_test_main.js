@@ -12,7 +12,7 @@ requirejs.config( {
         }
     },
     paths: {
-        Seed: 'app'
+        <%= moduleName %>: 'app'
     }
 } )
 

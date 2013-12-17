@@ -3,6 +3,9 @@
 A [Yeoman](http://yeoman.io) generator for modules with with requirejs, grunt, bower, connect, live-reload, mocha, sinon, chai, mocha-phantomjs  
 
 
+## Not ready 
+This generator is not usable yet, it's in development  
+
 ## Getting Started
 
 

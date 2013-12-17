@@ -10,23 +10,24 @@ describe( 'mangrove-module generator', function() {
     beforeEach( function( done ) {
 
         helpers.testDirectory( path.join( __dirname, 'temp' ), function( err ) {
+
             if ( err ) {
                 return done( err )
             }
 
-
             this.app = helpers.createGenerator( 'mangrove-module:app', [
                 '../../app'
             ] )
+
             done()
+            
         }.bind( this ) )
 
     } )
 
-    it( 'creates expected files', function( done ) {
+    it( 'installs without failing', function( done ) {
 
         var expected = [
-            '.jshintrc',
             'test/TestRunner.js',
             'documentation',
             'package.json',
@@ -50,8 +51,8 @@ describe( 'mangrove-module generator', function() {
             moduleName: 'module_name'
         } )
 
-        this.app.options[ 'skip-install' ] = true
-        
+        // this.app.options[ 'skip-install' ] = true
+
         this.app.run( {}, function() {
             helpers.assertFiles( expected )
             done()
