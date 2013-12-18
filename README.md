@@ -1,23 +1,23 @@
-# generator-mangrove-module [![Build Status](https://secure.travis-ci.org/cagosta/generator-mangrove-module.png?branch=master)](https://travis-ci.org/cagosta/generator-mangrove-module)
+# Mangrove module generator [![Build Status](https://secure.travis-ci.org/cagosta/generator-mangrove-module.png?branch=master)](https://travis-ci.org/cagosta/generator-mangrove-module)
 
-A [Yeoman](http://yeoman.io) generator for modules with with requirejs, grunt, bower, connect, live-reload, mocha, sinon, chai, mocha-phantomjs  
+A [Yeoman](http://yeoman.io) generator for modules with requirejs, grunt, bower, connect, live-reload, mocha, sinon, chai, mocha-phantomjs with usefull tasks such as browser-ready and node-ready standalone files build  
 
 
 ### Not ready 
-The generotr is currently in development, use if you now what you're doing.  
-
+This generator is currently in development, use it only if you now what you're doing.  
+It has never been use for a real use case.  
 
 ### Features  
 - Create app directory tree  
 - Install dependencies and configure package.json, bower.json  
 - Install phantomjs with a postinstall script (run sudo npm install)
-- Initialize git && remote  
+- Initialize git & remote  
 - Create config.json file & inject it in grunt  
 - Add requirejs paths configuration thanks to grunt-bower-requirejs  
 - Create ready-to-use test files for phantomjs, mocha, chai, requirejs  
 - Create export file for node.js  
-- Simple connect server to deliver the modules ( useless ? )  
 - Build standalone dist files ( almond.js )  
+- Simple connect server ( useless ? )  
 
 ### To do
 - Test Generator ( hard ? )  
@@ -68,6 +68,14 @@ and then
 
 ```
 $ grunt browser_test
+```
+
+### Build 
+
+Build standalone files for the browser with a lighweight amd loader and expose window[ moduleName ] 
+
+```
+grunt build 
 ```
 
 

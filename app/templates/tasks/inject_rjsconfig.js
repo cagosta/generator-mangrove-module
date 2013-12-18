@@ -18,6 +18,7 @@ module.exports = function( grunt ) {
 
     } )
 
+    // dirty double hack \o/, to be documented 
     grunt.config.set( 'replace.standaloneBaseUrl', {
         src: 'app/standalone.js',
         overwrite: true,
