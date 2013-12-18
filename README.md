@@ -22,9 +22,10 @@ The generotr is currently in development, use if you now what you're doing.
 ### To do
 - Test Generator ( hard ? )  
 - Use in a real project  
-- Is running npm install -g in a postinstall script dirty ?  
-- Clean server & livereload ( working ? )  
+- Doc  
 - Run tests with node.js  
+- Clean server & livereload ( working ? )  
+- Is running npm install -g in a postinstall script dirty ?  
 - Clean task naming   
 - Automatic top level folder creation  
 - Avoid re-installing phantomjs when already installed  
