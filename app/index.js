@@ -77,6 +77,7 @@ MangroveModuleGenerator.prototype.makeAppFiles = function() {
 
     this.mkdir( 'app' )
     this.template( 'app/_module.js', 'app/' + this.moduleName + '.js' )
+    this.template( 'app/_standalone.js', 'app/standalone.js' )
 
 }
 
