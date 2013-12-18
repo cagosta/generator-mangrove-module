@@ -35,10 +35,13 @@ It has never been use for a real use case.
 
 ### Install  
 
+With sudo 
+
 ```
 $ npm install -g yo  
-$ npm install generator-mangrove-module
+$ npm install -g generator-mangrove-module
 $ mkdir [module_name] 
+$ cd [module_name]
 $ yo mangrove-module
 ```
 
