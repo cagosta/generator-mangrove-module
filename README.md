@@ -3,7 +3,7 @@
 A [Yeoman](http://yeoman.io) generator for modules with requirejs, grunt, bower, connect, live-reload, mocha, sinon, chai, mocha-phantomjs with usefull tasks such as browser-ready and node-ready standalone files build  
 
 
-### Not ready 
+### Not ready
 This generator is currently in development, use it only if you now what you're doing.  
 It has never been use for a real use case.  
 
@@ -24,13 +24,14 @@ It has never been use for a real use case.
 - Use in a real project  
 - Doc  
 - Run tests with node.js  
+- Versioning  
 - Clean server & livereload ( working ? )  
 - Is running npm install -g in a postinstall script dirty ?  
 - Clean task naming   
 - Automatic top level folder creation  
 - Avoid re-installing phantomjs when already installed  
 - Reduce size when installed ( feasible ? node_modules 51MB, bower_components 19MB wtf ? )  
-
+- Check if English is correct ( any help would be welcomed )
 
 ### Install  
 
