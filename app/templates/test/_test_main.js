@@ -5,6 +5,7 @@ if ( typeof window === 'undefined' )
 
 
 requirejs.config( {
+    
     baseUrl: '../',
     shim: {
         mocha: {
@@ -12,8 +13,9 @@ requirejs.config( {
         }
     },
     paths: {
-        <%= moduleName %>: 'app'
+        "<%= config.name.raw %>": 'app'
     }
+
 } )
 
 

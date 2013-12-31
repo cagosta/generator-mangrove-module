@@ -1,8 +1,14 @@
 {
-    "name": "<%= moduleName %>",
+    "name": "<%= config.name.slug %>",
     "version": "0.0.1",
-    "private": true,
+    "private": false,
+    "keywords": [],
+    "contributors": [ "<%= config.author.name %> <<%= config.author.email %>>" ],
+    "description": "",
     "devDependencies": {
+    },
+    "dependencies": {
+        "requirejs": "~2.1.9",
         "grunt": "~0.4.x",
         "bower": "~1.x",
         "grunt-contrib-connect": "~0.2.0",
@@ -16,23 +22,29 @@
         "mime": "~1.2.11",
         "rimraf": "~2.2.5",
         "grunt-contrib-requirejs": "~0.4.1",
-        "grunt-text-replace": "~0.3.10"
+        "grunt-text-replace": "~0.3.10",
+        "grunt-contrib-copy": "~0.4.1",
+        "grunt-contrib-stylus": "~0.11.0",
+        "grunt-jsdoc": "~0.4.2",
+        "ink-docstrap": "~0.2.0-0",
+        "grunt-bump": "0.0.13"
     },
-    "homepage": "https://github.com/<%= githubPath %>",
-    "bugs": "https://github.com/<%= githubPath %>/issues",
+    "homepage": "https://github.com/<%= config.github.path %>",
+    "bugs": "https://github.com/<%= config.github.path %>/issues",
     "author": {
-        "name": "",
-        "email": "",
-        "url": "https://github.com/<%= githubUser %>"
+        "name": "<%= config.author.name %>",
+        "email": "<%= config.author.email %>",
+        "url": "https://github.com/<%= config.github.path %>"
     },
-    "main": "app/index.js",
+    "main": "app/main.js",
     "repository": {
         "type": "git",
-        "url": "git://github.com/<% githubPath %>.git"
+        "url": "git://github.com/<% config.github.path %>.git"
     },
     "licenses": [
         {
-            "type": "MIT"
+            "type": "MIT",
+            "link": "http://opensource.org/licenses/MIT"
         }
     ],
     "scripts": {

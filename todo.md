@@ -1,4 +1,1 @@
 
-make dist   
-
-builder  

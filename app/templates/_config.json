@@ -1,6 +1,31 @@
 {
-  "moduleName": "<%= moduleName %>",
-  "githubUser": "<%= githubUser %>",
-  "githubPath": "<%= githubPath %>",
-  "livereloadPort": 35729
+ 
+    "name": {
+        "raw": "my.module",
+        "camel": "myModule",
+        "snake": "my_module"
+    },
+
+    "github": {
+        "user": "john",
+        "path": "john/my.module"
+    },
+
+    "livereloadPort": 35729,
+
+    "author": {
+        "name": "John Doo",
+        "email": "john@do.oo"
+    },
+
+    "deploy": {
+
+        "host": "johndoo.com>",
+
+        "dir": "/var/www/johndoo.com/",
+
+        "user": "john"
+
+    }
+
 }

@@ -1,5 +1,5 @@
 var EngineDetector = function() {
-    this.isNofde = false
+    this.isNode = false
     this.isBrowser = false
     this.isUnknown = false
     this._exports
@@ -76,23 +76,38 @@ engine.ifBrowser( function() {
 
 
 requirejs.config( {
-    baseUrl: function(){ return ( typeof define === 'undefined') ? __dirname: '.'}(),
+    baseUrl: function(){ return ( typeof define === 'undefined') ? __dirname: '.' }(),
     shim: {
         mocha: {
             exports: 'mocha'
         }
     },
     paths: {
-        <%= moduleName %>: '.'
+        "<%= config.name.raw %>": '.'
     }
 } )
 
 
-requirejs( [ '<%= moduleName %>/<%= moduleName %>' ], function( <%= moduleName %> ) {
-    return <%= moduleName %>
-} )
+var isStandalone = !! requirejs._defined,
+    synchronous = isStandalone
 
-var <%= moduleName %> = requirejs( '<%= moduleName %>/<%= moduleName %>' )
+engine.ifNode(function(){
 
-engine.exports( '<%= moduleName %>', <%= moduleName %> )
+    synchronous = true
 
+})
+
+if ( synchronous ) { // case standalone
+
+    var <%= config.name.camel %> = requirejs( '<%= config.name.raw %>/<%= config.name.raw %>' )
+
+    engine.exports( '<%= config.name.camel %>', <%= config.name.camel %> )
+
+
+} else {
+
+    requirejs( [ '<%= config.name.raw %>/<%= config.name.raw %>' ], function( <%= config.name.camel %> ) {
+        engine.exports( '<%= config.name.camel %>', <%= config.name.camel %> )
+    } )
+
+}

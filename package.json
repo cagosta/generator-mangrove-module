@@ -1,6 +1,6 @@
 {
   "name": "generator-mangrove-module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Yeoman generator for Modules with requirejs, grunt, bower, connect,  mocha, sinon, chai, mocha-phantomjs",
   "keywords": [
     "yeoman-generator",
@@ -23,7 +23,9 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.14.0"
+    "yeoman-generator": "~0.14.0",
+    "underscore.string": "~2.3.3",
+    "commander": "~2.1.0"
   },
   "devDependencies": {
     "mocha": "~1.14.0"

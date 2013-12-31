@@ -9,8 +9,8 @@ module.exports = function( grunt ) {
             }
         },
 
-        standalone: {
-            rjsConfig: 'app/standalone.js',
+        main: {
+            rjsConfig: 'app/main.js',
             options: {
                 baseUrl: './app'
             }
@@ -19,8 +19,9 @@ module.exports = function( grunt ) {
     } )
 
     // dirty double hack \o/, to be documented 
-    grunt.config.set( 'replace.standaloneBaseUrl', {
-        src: 'app/standalone.js',
+    grunt.config.set( 'replace.mainBaseUrl', {
+
+        src: 'app/main.js',
         overwrite: true,
         replacements: [
             {
@@ -28,10 +29,12 @@ module.exports = function( grunt ) {
                 to: "baseUrl: function(){ return ( typeof define === 'undefined') ? __dirname: '.'}(),\n    shim"
             }
         ]
+        
     } )
 
     grunt.registerTask( 'inject_rjsconfig', function() {
-        grunt.task.run( [ 'bower:test_main', 'bower:standalone', 'replace:standaloneBaseUrl' ] )
+
+        grunt.task.run( [ 'bower:test_main', 'bower:main', 'replace:mainBaseUrl' ] )
 
     } )
 

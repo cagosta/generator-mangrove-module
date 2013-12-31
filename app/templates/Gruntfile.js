@@ -17,18 +17,19 @@ GruntInitializer.prototype = {
         this.config = this.moduleConfig
         for ( var i in this.packageConfig ) // extend module config with package.json
             if ( this.packageConfig.hasOwnProperty( i ) )
-                this.config[ i ] = this.packageConfig[ i ]
+                if ( !this.config[ i ])
+                    this.config[ i ] = this.packageConfig[ i ]
     },
 
     loadGruntDependencies: function() {
-        require( 'matchdep' ).filterDev( 'grunt-*' ).forEach( this.grunt.loadNpmTasks )
+        require( 'matchdep' ).filter( 'grunt-*' ).forEach( this.grunt.loadNpmTasks )
     },
 
     initializeGrunt: function() {
 
         this.grunt.initConfig( {
 
-            module: this.config
+            config: this.config
 
         } )
     },

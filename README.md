@@ -1,6 +1,6 @@
 # Mangrove module generator [![Build Status](https://secure.travis-ci.org/cagosta/generator-mangrove-module.png?branch=master)](https://travis-ci.org/cagosta/generator-mangrove-module)
 
-A [Yeoman](http://yeoman.io) generator for modules with requirejs, grunt, bower, connect, live-reload, mocha, sinon, chai, mocha-phantomjs with usefull tasks such as browser-ready and node-ready standalone files build  
+A [Yeoman](http://yeoman.io) generator for modules with requirejs, grunt, bower, connect, live-reload, jsdoc, mocha, sinon, chai, mocha-phantomjs with usefull tasks such as browser-ready and node-ready standalone files build  
 
 
 ### Not ready
@@ -18,18 +18,15 @@ It has never been use for a real use case.
 - Create export file for node.js  
 - Build standalone dist files ( almond.js )  
 - Simple connect server ( useless ? )  
+- if isFrontEndApp is specified, generate a small front-end app structure including [Stylus](http://learnboost.github.io/stylus/)
 
 ### To do
+- Fix isFrontEndApp = false ( not working )
 - Test Generator ( hard ? )  
 - Use in a real project  
-- Doc  
 - Run tests with node.js  
-- Versioning  
 - Clean server & livereload ( working ? )  
 - Is running npm install -g in a postinstall script dirty ?  
-- Clean task naming   
-- Automatic top level folder creation  
-- Avoid re-installing phantomjs when already installed  
 - Reduce size when installed ( feasible ? node_modules 51MB, bower_components 19MB wtf ? )  
 - Check if English is correct ( any help would be welcomed )
 
@@ -44,6 +41,55 @@ $ mkdir [module_name]
 $ cd [module_name]
 $ yo mangrove-module
 ```
+
+Usual flow  
+```
+mkdir [module_name] && cd [module_name]
+yo mangrove-module --config_file [../config-file-path].json # ( see below  )
+grunt test # run test with phantomjs and moch
+grunt git:install # git init; create github repository; git remote add origin git@github ..
+# subl .
+# code ...
+bower install anothermodule
+grunt inject_rjsconfig
+# code .. 
+git add . 
+git commit -m "foo"
+grunt publish # publish into npm and bower registry
+grunt release # create and push tag, build standalone, run tests, send new version to npm
+```
+
+### Config file  
+
+Instead of rewriting the same config entries over and over ( github account, email .. ), you can just specify a config file.  
+For example, my base config file is:  
+```
+{
+    "name": {
+        "raw": "<%= moduleName %>",
+        "camel": "<%= moduleName %>",
+        "snake": "<%= moduleName %>"
+    },
+    "github": {
+        "user": "cagosta",
+        "path": "cagosta/<%= moduleName %>"
+    },
+    "livereloadPort": 35729,
+    "author": {
+        "name": "Cyril Agosta",
+        "email": "cyril.agosta@gmail.com"
+    },
+    "deploy": {
+        "host": "cagosta.fr",
+        "dir": "/var/www/cagosta.fr/",
+        "user": "cyril"
+    },
+    "cachedDeps": false,
+    "moduleName": "<%= moduleName %>",
+    "isFrontEndApp": true
+}
+```
+and I store it into `~/default-mangrove-module.config.json`
 
 
 ### Test 
@@ -77,9 +123,45 @@ $ grunt browser_test
 ### Build 
 
 Build standalone files for the browser with a lighweight amd loader and expose window[ moduleName ] 
+If isFrontEndApp is specified, build a ready-to-use /dist/build/ folder 
 
 ```
 grunt build 
+```
+
+### Doc   
+
+Generate jsdoc with 
+```
+grunt generate_doc
+```
+
+### Git
+
+An empty git repository and a remote pointing at github:<%= githubUser %>/<%= moduleName %> are automatically added.  
+Create a repository on github with:
+```
+grunt git:create_repo
+```
+
+### Deploy  
+
+Deploy via rsync with 
+```
+grunt deploy
+```
+
+This will rsync the dist/build folder to the host you specified in config.json 
+
+### Release
+
+See [grunt-release](https://github.com/geddski/grunt-release)
+
+### Generate stylus stylesheet 
+
+In case of frontEndApp, generate .css file from .stylus with 
+```
+grunt make_stylesheet
 ```
 
 

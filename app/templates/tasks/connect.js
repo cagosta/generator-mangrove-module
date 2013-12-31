@@ -1,7 +1,7 @@
 module.exports = function( grunt ) {
 
     var lrSnippet = require( 'connect-livereload' )( {
-            port: grunt.config.get('module.livereloadPort'),
+            port: grunt.config.get('config.livereloadPort'),
         } ),
         mountFolder = function( connect, dir ) {
             return connect.static( require( 'path' ).resolve( dir ) )

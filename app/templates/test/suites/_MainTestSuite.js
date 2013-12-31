@@ -1,13 +1,15 @@
 define( [
-    '<%= moduleName%>/<%=moduleName%>'
- ], function( <%= moduleName %> ) {
+    '<%= config.name.raw %>/<%= config.name.raw %>'
+ ], function( <%= config.name.camel %> ) {
 
     return function() {
 
-        describe( '<%= moduleName %>/<%= moduleName %>', function() {
+        describe( '<%= config.name.raw %>/<%= config.name.raw %>', function() {
 
             it( 'should load without blowing', function() {
-                expect( <%= moduleName %> ).to.exist
+
+                expect( <%= config.name.camel  %> ).to.exist
+                
             } )
 
         } )
