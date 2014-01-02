@@ -6,9 +6,11 @@
 
 
 
+
+
 ## Install ##
 
-<%= config.name.raw %> is coded as [amd module](http://requirejs.org/docs/whyamd.html) but can be installed with npm, bower or old-fashioned src=".min.js".
+<%= config.name.raw %> is coded as [AMD module](http://requirejs.org/docs/whyamd.html) but can be installed with npm, bower or old-fashioned src=".min.js".
 
 #### With npm: ####
 
@@ -27,7 +29,8 @@ var <%= config.name.camel %> = require('<%= config.name.slug %>')
 bower install <%= config.name.raw %>
 ```
 
-and use it with requirejs 
+Point `<%= config.name.raw %>` to `[bower_components_path]/<%= config.name.raw %>/app/<%= config.name.raw %>.js` into your requirejs path config 
+and load it with requirejs:  
 
 ```javascript
 require(['<%= config.name.raw %>/<%= config.name.raw %>'], function( <%= config.name.camel %> ){
@@ -50,6 +53,10 @@ The module is available via the scope
 ```javascript
 window.<%= config.name.camel %>
 ```
+
+## To do ##
+
+*  
 
 ## Documentation ##
 

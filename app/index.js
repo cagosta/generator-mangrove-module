@@ -177,6 +177,7 @@ var MangroveModuleGeneratorPrototype = {
         this.mkdir( 'app' )
         this.template( 'app/_module.js', 'app/' + this.config.name.raw + '.js' )
         this.template( 'app/_main.js', 'app/main.js' )
+        this.template( '_app.js', 'app.js' )
 
     },
 

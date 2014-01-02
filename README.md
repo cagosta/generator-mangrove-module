@@ -23,8 +23,6 @@ It has never been use for a real use case.
 ### To do
 - Fix isFrontEndApp = false ( not working )
 - Test Generator ( hard ? )  
-- Use in a real project  
-- Run tests with node.js  
 - Clean server & livereload ( working ? )  
 - Is running npm install -g in a postinstall script dirty ?  
 - Reduce size when installed ( feasible ? node_modules 51MB, bower_components 19MB wtf ? )  
@@ -122,7 +120,7 @@ $ grunt browser_test
 
 ### Build 
 
-Build standalone files for the browser with a lighweight amd loader and expose window[ moduleName ] 
+Build standalone files for the browser with a lighweight AMD loader and expose window[ moduleName ] 
 If isFrontEndApp is specified, build a ready-to-use /dist/build/ folder 
 
 ```

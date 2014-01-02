@@ -1,6 +1,9 @@
 {
     "name": "<%= config.name.raw %>",
     "version": "0.0.1",
+    "main": [
+        "app"
+    ],
     "licenses": [
         {
             "type": "MIT"
@@ -10,7 +13,6 @@
         "requirejs": "~2.1.9",
         "requirejs-plugins": "~1.0.2"
     },
-    "main": "app/<%= config.name.raw %>.js",
     "devDependencies": {
         "sinonjs": "~1.7.3",
         "chai": "~1.8.1",
