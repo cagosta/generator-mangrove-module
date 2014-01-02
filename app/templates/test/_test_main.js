@@ -5,19 +5,17 @@ if ( typeof window === 'undefined' )
 
 
 requirejs.config( {
-    
-    baseUrl: '../',
+    baseUrl: function(){ return ( typeof define === 'undefined') ? __dirname + '/../app': '../app'}(),
     shim: {
         mocha: {
             exports: 'mocha'
         }
     },
     paths: {
-        "<%= config.name.raw %>": 'app'
+        '<%= config.name.raw %>': '.',
+        test: '../test'
     }
-
 } )
-
 
 requirejs( [ 'test/TestRunner' ], function( TestRunner ) {
 

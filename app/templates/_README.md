@@ -76,11 +76,17 @@ See jsdoc-generated documentation in /documentation
 
 #### On the browser ####
 
-Open `test/` on your browser.
+Run `grunt test:browser` and open `test/` on your browser.
 
 #### On a headless browser ####
 
-`grunt test` will run your tests with [phantomjs](http://phantomjs.org/) and [mocha](http://visionmedia.github.io/mocha/)
+`grunt test:headless` will run your tests in a headless browser, with [phantomjs](http://phantomjs.org/) and [mocha](http://visionmedia.github.io/mocha/)
+
+### On node ####
+
+`grunt test:node` will run your tests with node and mocha.  
+
+Because of requirejs, the `mocha` command does not work.
 
 
 ## Build your own ##
@@ -93,6 +99,11 @@ This project uses [Node.js](http://nodejs.org/), [Grunt](http://gruntjs.com/) an
 
 This module is based on a [Yeoman](https://github.com/yeoman/yeoman/wiki/Getting-Started) generator: [Generator-mangrove-module](https://github.com/cagosta/generator-mangrove-module)  
 Check it for task-related references such as build, deploy etc ..
+
+
+## Authors ##
+* [<%= config.author.name %>](https://github.com/<%= config.github.user %>)
+
 
 ## License ##
 

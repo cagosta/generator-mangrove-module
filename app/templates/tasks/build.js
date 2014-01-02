@@ -110,7 +110,7 @@ Builder.prototype = {
     setRequirejsConfig: function() {
 
         this.mainConfigFile = 'app/main.js'
-        this.name = 'Function.nocomplex/main'
+        this.name = '<%= config.name.raw %>/main'
 
         this.grunt.config.set( 'requirejs', {
 

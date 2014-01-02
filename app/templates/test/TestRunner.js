@@ -6,6 +6,9 @@ define( [
     'mocha'
  ], function( chai, chaiAsPromise, sinon, sinonChai, mocha ) {
 
+
+
+    // dirty, todo
     Function.prototype.bind || ( Function.prototype.bind = function( scope ) {
         var self = this
         return ( function() {
@@ -13,9 +16,25 @@ define( [
         } )
     } )
 
+
+    /**
+     * Manage mocha, requirejs, phantomjs, mocha-phantomsjs mess
+     *
+     * This is full of epic hack to have all of this working
+     * 
+     * Careful, since requirejs is used, you cannot use the `mocha` command anymore.
+     * Add your test suites files in the array below
+     * Todo: better way of making tests
+     *
+     * 
+     */
+    
+
+
+
     var TestRunner = function() {
 
-        this.suiteUrls = [
+        this.suitePaths = [
             'test/suites/MainTestSuite'
         ]
 
@@ -28,7 +47,6 @@ define( [
         this.chai.use( sinonChai )
 
         this.defineGlobals()
-        this.mocha.setup( 'bdd' )
 
         this.requireSuites( this.onSuiteReady.bind( this ) )
 
@@ -38,6 +56,13 @@ define( [
 
         initializeMocha: function() {
             this.mocha = mocha
+            if ( this.isNode ) {
+                var Mocha = require( 'mocha/index' )
+                this.mocha = new Mocha( {
+                    ui: 'bdd',
+                    reporter: 'spec'
+                } )
+            }
         },
 
         onSuiteReady: function() {
@@ -45,9 +70,6 @@ define( [
         },
 
         run: function() {
-            for ( var i = 0; i < this.testSuites.length; i++ ) {
-                this.runTestSuite( this.testSuites[ i ] )
-            }
             if ( this.global.mochaPhantomJS ) {
                 this.global.mochaPhantomJS.run()
             } else
@@ -68,13 +90,34 @@ define( [
 
         defineGlobals: function() {
             this.global.expect = this.chai.expect
+            this.global.expect = this.chai.expect
+            if ( this.isNode ) {
+                global.define = requirejs.define
+            }
         },
 
         requireSuites: function( cb ) {
-            require( this.suiteUrls, function() {
-                this.setTestSuites( Array.prototype.slice.call( arguments ) )
-                cb()
+            this.mocha.suite.emit( 'pre-require', this.global, null, this )
+            if ( this.isNode ) {
+                this.addAllFiles()
+            }
+            require( [ 'test/suites/MainTestSuite' ], function() {
+                this.run()
             }.bind( this ) )
+        },
+
+        addAllFiles: function() {
+            for ( var i = 0; i < this.suitePaths.length; i++ ) {
+                this.addFile( this.suitePaths[ i ] )
+            }
+        },
+
+        addFile: function( suitePath ) {
+            this.mocha.addFile( this.getFullPath( suitePath ) )
+        },
+
+        getFullPath: function( suitePath ) {
+            return suitePath
         },
 
         setTestSuites: function( t ) {

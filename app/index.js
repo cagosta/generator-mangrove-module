@@ -180,15 +180,12 @@ var MangroveModuleGeneratorPrototype = {
 
     },
 
-
     makeDocumentationFiles: function() {
 
         this.mkdir( 'documentation' )
         this.template( 'documentation/_jsdoc.conf.json', 'documentation/jsdoc.conf.json' )
 
     },
-
-
 
     makeFrontEndAppFiles: function() {
         if ( !this.config.isFrontEndApp )

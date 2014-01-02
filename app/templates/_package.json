@@ -27,7 +27,8 @@
         "grunt-contrib-stylus": "~0.11.0",
         "grunt-jsdoc": "~0.4.2",
         "ink-docstrap": "~0.2.0-0",
-        "grunt-bump": "0.0.13"
+        "grunt-bump": "0.0.13",
+        "mocha": "~1.16.2"
     },
     "homepage": "https://github.com/<%= config.github.path %>",
     "bugs": "https://github.com/<%= config.github.path %>/issues",

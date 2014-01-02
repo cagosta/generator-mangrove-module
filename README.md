@@ -46,7 +46,7 @@ Usual flow
 ```
 mkdir [module_name] && cd [module_name]
 yo mangrove-module --config_file [../config-file-path].json # ( see below  )
-grunt test # run test with phantomjs and moch
+grunt test # run test with phantomjs and mocha
 grunt git:install # git init; create github repository; git remote add origin git@github ..
 # subl .
 # code ...
@@ -141,7 +141,7 @@ grunt generate_doc
 An empty git repository and a remote pointing at github:<%= githubUser %>/<%= moduleName %> are automatically added.  
 Create a repository on github with:
 ```
-grunt git:create_repo
+grunt git:create_github_repo
 ```
 
 ### Deploy  
@@ -172,6 +172,10 @@ This is a Yeoman generator
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
 
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+
+
+
