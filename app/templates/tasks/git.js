@@ -27,6 +27,16 @@ module.exports = function( grunt ) {
     } )
 
 
+    grunt.config.set( 'exec.git_add_dist', {
+
+        command: 'git add dist'
+
+    } )
+
+    grunt.registerTask( 'git:add_dist', [ 'exec:git_add_dist' ] )
+
+
+
     grunt.registerTask( 'git:initial_commit', function() {
 
         grunt.config.set( 'exec.git_initial_commit', {
