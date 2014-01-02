@@ -21,14 +21,13 @@ define( [
      * Manage mocha, requirejs, phantomjs, mocha-phantomsjs mess
      *
      * This is full of epic hack to have all of this working
-     * 
+     *
      * Careful, since requirejs is used, you cannot use the `mocha` command anymore.
      * Add your test suites files in the array below
      * Todo: better way of making tests
      *
-     * 
+     *
      */
-    
 
 
 
@@ -101,7 +100,7 @@ define( [
             if ( this.isNode ) {
                 this.addAllFiles()
             }
-            require( [ 'test/suites/MainTestSuite' ], function() {
+            require( this.suitePaths, function() {
                 this.run()
             }.bind( this ) )
         },
