@@ -28,7 +28,10 @@
         "grunt-jsdoc": "~0.4.2",
         "ink-docstrap": "~0.2.0-0",
         "grunt-bump": "0.0.13",
-        "mocha": "~1.16.2"
+        "mocha": "~1.16.2",
+        "grunt-cli": "~0.1.11",
+        "mocha-phantomjs": "~3.3.1",
+        "phantomjs": "~1.9.2-6"
     },
     "homepage": "https://github.com/<%= config.github.path %>",
     "bugs": "https://github.com/<%= config.github.path %>/issues",
@@ -49,8 +52,8 @@
         }
     ],
     "scripts": {
-        "postinstall": "grunt postinstall",
-        "test": "grunt test"
+        "postinstall": "node_modules/.bin/grunt postinstall",
+        "test": "node_modules/.bin/grunt test"
     },
     "engines": {
         "node": ">=0.8.0"

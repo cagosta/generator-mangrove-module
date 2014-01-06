@@ -14,7 +14,9 @@ GruntInitializer.prototype = {
     initiliazeConfig: function() {
         this.moduleConfig = this.grunt.file.readJSON( './config.json' )
         this.packageConfig = this.grunt.file.readJSON( './package.json' )
+        this.credentialsConfig = this.grunt.file.readJSON( './.credentials.json')
         this.config = this.moduleConfig
+        this.config.credentials = this.credentialsConfig
         for ( var i in this.packageConfig ) // extend module config with package.json
             if ( this.packageConfig.hasOwnProperty( i ) )
                 if ( !this.config[ i ])

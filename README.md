@@ -115,7 +115,7 @@ $ grunt server
 and then  
 
 ```
-$ grunt browser_test
+$ grunt test:headless
 ```
 
 ### Build 
@@ -137,7 +137,7 @@ grunt generate_doc
 ### Git
 
 An empty git repository and a remote pointing at github:<%= githubUser %>/<%= moduleName %> are automatically added.  
-Create a repository on github with:
+Create a github repository with:
 ```
 grunt git:create_github_repo
 ```

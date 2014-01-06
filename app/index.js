@@ -42,7 +42,7 @@ var MangroveModuleGeneratorPrototype = {
                 cf.moduleName = p.moduleName
                 cf.name.raw = p.moduleName
                 cf.name.snake = _.underscored( cf.name.raw )
-                cf.name.slug = _.slugify( cf.name.raw.replace('.', ' ') )
+                cf.name.slug = _.slugify( cf.name.raw.replace( '.', ' ' ) )
                 cf.name.camel = _.camelize( cf.name.raw.replace( '.', ' ' ) )
                 cf.deploy.dir = cf.deploy.dir + cf.name.raw
                 cf.github.path = cf.github.user + '/' + cf.name.raw
@@ -69,7 +69,7 @@ var MangroveModuleGeneratorPrototype = {
             cf.name.raw = p.moduleName
             cf.name.snake = _.underscored( cf.name.raw )
             cf.name.camel = _.camelize( cf.name.raw.replace( '.', ' ' ) )
-            cf.name.slug = _.slugify( cf.name.raw.replace('.', ' ') )
+            cf.name.slug = _.slugify( cf.name.raw.replace( '.', ' ' ) )
             cf.github.path = cf.github.user + '/' + cf.name.raw
             cf.github.user = p.githubUser
 
@@ -168,6 +168,7 @@ var MangroveModuleGeneratorPrototype = {
         this.template( '_README.md', 'README.md' )
 
         this.copy( '_package.json', 'package.json' )
+        this.copy( '_credentials.json', '.credentials.json' )
         this.template( '_bower.json', 'bower.json' )
 
     },
