@@ -96,6 +96,27 @@ Run `grunt test:browser` and open `test/` on your browser.
 Because of requirejs, the `mocha` command does not work.
 
 
+### On saucelabs ####
+
+Beta: run your tests with saucelabs and sauce connect:  
+- add your saucelabs credentials into .credentials.json 
+```
+{
+ 
+    "saucelabs": {
+        "username": "",
+        "key": ""
+    }   
+
+}
+```
+- configure the browser your want your tests to run on in `config.json`  
+- and run your tests with:  
+```
+grunt test:sauce
+```
+
+
 ## Build your own ##
 
 This project uses [Node.js](http://nodejs.org/), [Grunt](http://gruntjs.com/) and [Require.js](http://requirejs.org/docs/optimization.html) for the build process. If for some reason you need to build a custom version install Node.js, `npm install` and run:

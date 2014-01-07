@@ -7,26 +7,6 @@ A [Yeoman](http://yeoman.io) generator for modules with requirejs, grunt, bower,
 This generator is currently in development, use it only if you now what you're doing.  
 It has never been use for a real use case.  
 
-### Features  
-- Create app directory tree  
-- Install dependencies and configure package.json, bower.json  
-- Install phantomjs with a postinstall script (run sudo npm install)
-- Initialize git & remote  
-- Create config.json file & inject it in grunt  
-- Add requirejs paths configuration thanks to grunt-bower-requirejs  
-- Create ready-to-use test files for phantomjs, mocha, chai, requirejs  
-- Create export file for node.js  
-- Build standalone dist files ( almond.js )  
-- Simple connect server ( useless ? )  
-- if isFrontEndApp is specified, generate a small front-end app structure including [Stylus](http://learnboost.github.io/stylus/)
-
-### To do
-- Fix isFrontEndApp = false ( not working )
-- Test Generator ( hard ? )  
-- Clean server & livereload ( working ? )  
-- Is running npm install -g in a postinstall script dirty ?  
-- Reduce size when installed ( feasible ? node_modules 51MB, bower_components 19MB wtf ? )  
-- Check if English is correct ( any help would be welcomed )
 
 ### Install  
 
@@ -44,6 +24,7 @@ Usual flow
 ```
 mkdir [module_name] && cd [module_name]
 yo mangrove-module --config_file [../config-file-path].json # ( see below  )
+grunt inject_rjsconfig # inject requirejs paths config into app/main.js and test/test_main.js
 grunt test # run test with phantomjs and mocha
 grunt git:install # git init; create github repository; git remote add origin git@github ..
 # subl .
@@ -56,6 +37,28 @@ git commit -m "foo"
 grunt publish # publish into npm and bower registry
 grunt release # create and push tag, build standalone, run tests, send new version to npm
 ```
+
+### Features  
+- Create app directory tree  
+- Install dependencies and configure package.json, bower.json  
+- Install phantomjs with a postinstall script (run sudo npm install)
+- Initialize git & remote  
+- Create config.json file & inject it in grunt  
+- Add requirejs paths configuration thanks to grunt-bower-requirejs  
+- Create ready-to-use test files for phantomjs, mocha, chai, requirejs  
+- Create export file for node.js  
+- Build standalone dist files ( almond.js )  
+- Simple connect server ( useless ? )  
+
+### To do
+- Fix travis build & add Saucelabs tests
+- Extract tasks and put them in ( grunt ) module ? 
+- Test Generator ( hard ? )  
+- Clean server & livereload ( working ? )  
+- Is running npm install -g in a postinstall script dirty ?  
+- Reduce size when installed ( feasible ? node_modules 51MB, bower_components 19MB wtf ? )  
+- Check if English is correct ( any help would be welcomed )
+
 
 ### Config file  
 
@@ -73,13 +76,13 @@ For example, my base config file is:
         "path": "cagosta/<%= moduleName %>"
     },
     "livereloadPort": 35729,
-    "author": {
+    "author": { 
         "name": "Cyril Agosta",
-        "email": "cyril.agosta@gmail.com"
+        "email": "cyril.agosta.dev@gmail.com"
     },
-    "deploy": {
-        "host": "cagosta.fr",
-        "dir": "/var/www/cagosta.fr/",
+    "deploy": { // for rsync deployment
+        "host": "yoursite.fr",
+        "dir": "/var/www/yoursite.fr/",
         "user": "cyril"
     },
     "cachedDeps": false,
@@ -115,13 +118,29 @@ $ grunt server
 and then  
 
 ```
-$ grunt test:headless
+$ grunt test:browser
+```
+
+Beta: run your tests with saucelabs:
+* add your saucelabs credentials into .credentials.json 
+```
+{
+ 
+    "saucelabs": {
+        "username": "",
+        "key": ""
+    }   
+
+}
+```
+configure the browser your want your tests to run on in `config.json` and then:
+```
+grunt test:sauce
 ```
 
 ### Build 
 
 Build standalone files for the browser with a lighweight AMD loader and expose window[ moduleName ] 
-If isFrontEndApp is specified, build a ready-to-use /dist/build/ folder 
 
 ```
 grunt build 

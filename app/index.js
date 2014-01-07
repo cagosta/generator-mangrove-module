@@ -150,7 +150,7 @@ var MangroveModuleGeneratorPrototype = {
 
     },
 
-    makeFiles: function() {
+    makeFiles: function() { // no need sinc yeoman automatically call all methods of the prototype ( ?? )
         // this.makeRootFiles()
         // this.makeAppFiles()
         // this.makeDocumentationFiles()
@@ -163,11 +163,13 @@ var MangroveModuleGeneratorPrototype = {
     makeRootFiles: function() {
 
         this.copy( 'gitignore', '.gitignore' )
+        this.copy( 'bowerrc', '.bowerrc' )
         this.copy( 'travis.yml', '.travis.yml' )
         this.copy( 'Gruntfile.js', 'Gruntfile.js' )
         this.template( '_README.md', 'README.md' )
 
         this.copy( '_package.json', 'package.json' )
+        this.copy( 'postinstall.js', 'postinstall.js' )
         this.copy( '_credentials.json', '.credentials.json' )
         this.template( '_bower.json', 'bower.json' )
 
