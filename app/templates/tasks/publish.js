@@ -1,8 +1,12 @@
 module.exports = function( grunt ) {
 
 
+
+    if ( grunt.config.get( 'config.private' ) ) // blocking if private module
+        return
+
     grunt.config.set( 'exec.bower_register', {
-        command: 'bower register SeedHq git://github.com/cagosta/SeedHq'
+        command: 'bower register <%= config.name.raw %> git://github.com/<%= config.github.path %>'
     } )
 
     grunt.config.set( 'exec.npm_publish', {

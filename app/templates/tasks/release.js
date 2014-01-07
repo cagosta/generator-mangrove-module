@@ -8,16 +8,19 @@ var Releaser = function( o ) {
     } )
 
 
+    this.isPrivate = !! this.grunt.config.get( 'config.private' )
+    this.doPush = ! this.isPrivate
+
     this.grunt.config.set( 'bump.options', {
-        files: [ 'package.json', 'bower.json', 'app/SeedHq.js' ],
+        files: [ 'package.json', 'bower.json', 'app/<%= config.name.raw %>.js' ],
         updateConfigs: [ 'config' ],
         commit: true,
         commitMessage: 'Releasing v%VERSION%',
-        commitFiles: [ 'package.json', 'bower.json', 'app/SeedHq.js', 'dist' ], // '-a' for all files
+        commitFiles: [ 'package.json', 'bower.json', 'app/<%= config.name.raw %>.js', 'dist', 'test/index_build.html' ], // '-a' for all files
         createTag: true,
         tagName: 'v%VERSION%',
-        tagMessage: 'Version %VERSION%',
-        push: true,
+        tagMessage: 'Vereasion %VERSION%',
+        push: this.doPush,
         pushTo: 'origin master',
     } )
 
@@ -43,7 +46,11 @@ Releaser.prototype = {
     },
 
     push: function() {
-        this.grunt.task.run( [ 'bump-commit', 'exec:npm_publish' ] )
+        if ( this.isPrivate ) {
+            this.grunt.task.run( [ 'bump-commit' ] )
+        } else {
+            this.grunt.task.run( [ 'bump-commit', 'exec:npm_publish' ] )
+        }
     }
 
 
