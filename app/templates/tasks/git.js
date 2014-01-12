@@ -1,7 +1,7 @@
 module.exports = function( grunt ) {
 
-    var isPrivate = grunt.config.process( 'config.private' )
-
+    var isPrivate = grunt.config.get( 'config.private' )
+    
     grunt.registerTask( 'git:add_origin', function() {
 
         grunt.config.set( 'exec.git_add_origin', {
