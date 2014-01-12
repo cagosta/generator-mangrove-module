@@ -1,12 +1,12 @@
 module.exports = function( grunt ) {
 
-
+    var isPrivate = grunt.config.process( 'config.private' )
 
     grunt.registerTask( 'git:add_origin', function() {
 
         grunt.config.set( 'exec.git_add_origin', {
 
-            command: 'git remote add origin git@github.com:cagosta/String.nocomplex.git'
+            command: 'git remote add origin git@github.com:cagosta/<%%= config.name.raw %>'
 
         } )
 
@@ -14,7 +14,7 @@ module.exports = function( grunt ) {
 
     } )
 
-    if ( !grunt.config.process( 'config.private' ) ) {
+    if ( ! isPrivate ) {
 
         grunt.registerTask( 'git:push_set_upstream', function() {
 
@@ -53,7 +53,7 @@ module.exports = function( grunt ) {
 
         grunt.registerTask( 'git:create_github_repo', function() {
 
-            var curlCommand = grunt.config.process( 'curl -u \'cagosta\' https://api.github.com/user/repos -d \'{"name":"String.nocomplex"}\'' )
+            var curlCommand = grunt.config.process( 'curl -u \'cagosta\' https://api.github.com/user/repos -d \'{"name":"<%%= config.name.raw %>"}\'' )
 
             grunt.config.set( 'exec.git_create_github_repo', {
                 command: curlCommand

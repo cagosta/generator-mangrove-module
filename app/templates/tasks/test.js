@@ -13,9 +13,9 @@ var SauceRunner = function( o ) {
     this.grunt.config.set( 'saucelabs-mocha', { // see https://github.com/axemclion/grunt-saucelabs
         all: {
             options: {
-                username: '<%= config.credentials.saucelabs.username %>', // if not provided it'll default to ENV SAUCE_USERNAME (if applicable)
-                key: '<%= config.credentials.saucelabs.key %>', // if not provided it'll default to ENV SAUCE_ACCESS_KEY (if applicable)
-                urls: [ 'http://localhost:<%= config.server.port %>/test/index_build.html' ],
+                username: '<%%= config.credentials.saucelabs.username %>', // if not provided it'll default to ENV SAUCE_USERNAME (if applicable)
+                key: '<%%= config.credentials.saucelabs.key %>', // if not provided it'll default to ENV SAUCE_ACCESS_KEY (if applicable)
+                urls: [ 'http://localhost:<%%= config.server.port %>/test/index_build.html' ],
                 concurrency: 2,
                 // concurrency: 'Number of concurrent browsers to test against. Will default to the number of overall browsers specified. Check your plan (free: 2, OSS: 3) and make sure you have got sufficient Sauce Labs concurrency.',
                 // tunneled: 'true (default) / false; false if you choose to skip creating a Sauce connect tunnel.',
@@ -25,7 +25,7 @@ var SauceRunner = function( o ) {
                 testReadyTimeout: 20 * 1000, //'Milliseconds to wait until the test-page is ready to be read',
                 // detailedError: 'false (default) / true; if true log detailed test results when a test error occurs',
                 detailedError: true,
-                testname: '<%= config.name.raw %>#<%= config.version %>',
+                testname: '<%%= config.name.raw %>#<%%= config.version %>',
                 // tags: [ 'Array of tags' ],
                 browsers: this.browsers,
                 onTestComplete: function() {

@@ -214,7 +214,7 @@ var MangroveModuleGeneratorPrototype = {
 
         this.directory( 'test/assets', 'test/assets' )
         this.directory( 'tasks', 'tasks' )
-
+        this.template( 'test/index_build.html', 'test/index_build.html' )
         this.template( 'test/_test_main.js', 'test/test_main.js' )
         this.template( 'test/TestRunner.js', 'test/TestRunner.js' )
         this.template( 'test/suites/_MainTestSuite.js', 'test/suites/MainTestSuite.js' )
