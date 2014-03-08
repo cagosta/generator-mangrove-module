@@ -4,12 +4,9 @@ define( [
     'sinonjs',
     'sinon-chai',
     'mocha',
-    'json!./tests.json',
-    'mangrove-utils/objectify',
     'mangrove-utils/bindPolyfill',
-    'Array.nocomplex/all'
-], function( chai, chaiAsPromise, sinon, sinonChai, mocha, tests, objectify, bind, All ) {
-
+    'json!./tests.json'
+], function( chai, chaiAsPromise, sinon, sinonChai, mocha, bind, tests ) {
 
 
     /**
@@ -19,8 +16,9 @@ define( [
      * This is full of epic hack to have all of this working
      *
      * Careful, since requirejs is used, you cannot use the `mocha` command anymore.
-     * Add your test suites files in the array below
-     * Todo: better way of making tests
+     * Add your tests by append the r.js path in the ./test.json array
+     *
+     * To do: clean this
      *
      */
 
@@ -28,12 +26,15 @@ define( [
 
     var TestRunner = function() {
 
-        this.suitePaths = tests
+        this.testIds = tests
+
+        this.initializeSuitePaths()
+
+
 
         this.detectExecutionEnvironment()
         this.initializeGlobal()
         this.initializeMocha()
-
 
         this.chai = chai
         this.chai.use( chaiAsPromise )
@@ -41,39 +42,39 @@ define( [
 
         this.defineGlobals()
 
-        this.initializeGrepFilter()
-
-        this.updatePageTitle()
-
         this.requireSuites( this.onSuiteReady.bind( this ) )
 
     }
 
     TestRunner.prototype = {
 
-        initializeMocha: function() {
+        initializeSuitePaths: function() {
 
-            this.mocha = mocha
+            this.suitePaths = []
 
-            if ( this.isNode ) {
-                var Mocha = require( 'mocha/index' )
-                this.mocha = new Mocha( {
-                    ui: 'bdd'
-                } )
-            }
+
+            this.testIds.forEach( function( p, i ) {
+
+                var path = p.split( '/' ),
+                    testPath;
+
+                testPath = 'test/app/' + path.slice( 1, path.length ).join( '/' ) + 'Test'
+                this.suitePaths[ i ] = testPath
+
+            }.bind( this ) )
 
         },
 
-        initializeGrepFilter: function() {
+        initializeMocha: function() {
 
-            var urlParams = objectify( window.location.search.slice( 1 ) )
-
-            this.grep = urlParams.grep
-
-            if ( !this.grep )
-                this.grep = ''
-
-            this.grep = this.grep.split( ' ' )[ 0 ]
+            this.mocha = mocha
+            if ( this.isNode ) {
+                var Mocha = require( 'mocha/index' )
+                this.mocha = new Mocha( {
+                    ui: 'bdd',
+                    reporter: 'spec'
+                } )
+            }
 
         },
 
@@ -95,13 +96,6 @@ define( [
         runTestSuite: function( testSuite ) {
 
             testSuite( this.config )
-
-        },
-
-        updatePageTitle: function() {
-
-            if ( this.grep )
-                window.document.title = 'Dashux Tests: ' + this.grep
 
         },
 
@@ -127,27 +121,14 @@ define( [
 
         requireSuites: function( cb ) {
 
-
-            var rfilter = new RegExp( this.grep, 'gi' )
-
-            var paths = this.suitePaths.map( function( relative ) {
-
-                return 'test/app/' + relative + 'Test'
-
-            } ).where( function( p ) {
-
-                return rfilter.test( p )
-
-            }.bind( this ) )
-
-            console.log( ' TestRunner -> Running tests for', paths )
-
             this.mocha.suite.emit( 'pre-require', this.global, null, this )
+
             if ( this.isNode ) {
                 this.addAllFiles()
             }
 
-            require( paths, function() {
+
+            require( this.suitePaths, function() {
 
                 this.run()
 
