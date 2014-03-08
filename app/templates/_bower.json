@@ -4,14 +4,14 @@
     "main": [
         "app"
     ],
-    "licenses": [
-        {
-            "type": "MIT"
-        }
-    ],
+    "licenses": [ {
+        "type": "MIT"
+    } ],
     "dependencies": {
         "requirejs": "~2.1.9",
-        "requirejs-plugins": "~1.0.2"
+        "requirejs-plugins": "~1.0.2",
+        "Array.nocomplex": "0.0.x",
+        "mangrove-utils": "0.0.x"
     },
     "devDependencies": {
         "sinonjs": "~1.7.3",

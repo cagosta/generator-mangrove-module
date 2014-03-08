@@ -8,6 +8,8 @@
 
     "private": false,
 
+    "browserOnly": false,
+
     "server": {
         "port": 5000
     },
@@ -26,6 +28,8 @@
 
     "deploy": {
 
+        "gh_pages": true,
+        "private_host": false,
         "host": "johndoo.com>",
 
         "dir": "/var/www/johndoo.com/",

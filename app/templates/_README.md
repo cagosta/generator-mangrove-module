@@ -5,7 +5,8 @@
 ## Introduction ##
 
 
-
+## Demo ##
+See [cagosta.github.io/<%= config.name.raw %>](http://cagosta.github.io/<%= config.name.raw %>)
 
 
 ## Install ##

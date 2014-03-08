@@ -1,20 +1,22 @@
 module.exports = function( grunt ) {
 
     var isPrivate = grunt.config.get( 'config.private' )
-    
-    grunt.registerTask( 'git:add_origin', function() {
 
-        grunt.config.set( 'exec.git_add_origin', {
 
-            command: 'git remote add origin git@github.com:cagosta/<%%= config.name.raw %>'
+
+    if ( !isPrivate ) {
+
+        grunt.registerTask( 'git:add_origin', function() {
+
+            grunt.config.set( 'exec.git_add_origin', {
+
+                command: 'git remote add origin git@github.com:<%%= config.github.user %>/<%%= config.name.raw %>'
+
+            } )
+
+            grunt.task.run( 'exec:git_add_origin' )
 
         } )
-
-        grunt.task.run( 'exec:git_add_origin' )
-
-    } )
-
-    if ( ! isPrivate ) {
 
         grunt.registerTask( 'git:push_set_upstream', function() {
 
@@ -27,6 +29,43 @@ module.exports = function( grunt ) {
             grunt.task.run( 'exec:git_set_upstream' )
 
         } )
+
+        grunt.registerTask( 'git:create_remote_repo', function() {
+
+            var curlCommand = grunt.config.process( 'curl -u \'<%%= config.github.user %>\' https://api.github.com/user/repos -d \'{"name":"<%%= config.name.raw %>"}\'' )
+
+            grunt.config.set( 'exec.git_create_remote_repo', {
+                command: curlCommand
+            } )
+
+            grunt.task.run( 'exec:git_create_remote_repo' )
+
+        } )
+
+    } else {
+
+        grunt.registerTask( 'git:add_origin', function() {
+
+            grunt.config.set( 'exec.git_add_origin', {
+
+                command: 'git remote add origin git@<%%= config.deploy.host %>:/home/git/<%%= config.name.raw %>.git'
+
+            } )
+
+            grunt.task.run( 'exec:git_add_origin' )
+
+        } )
+
+        grunt.registerTask( 'git:create_remote_repo', function() {
+
+            grunt.config.set( 'exec.create_remote_repo', {
+                command: 'ssh git@<%%= config.deploy.host %> "cd /home/git/ && mkdir <%%= config.name.raw %>.git && cd <%%= config.name.raw %>.git && git --bare init"'
+            } )
+
+            grunt.task.run( [ 'exec:create_remote_repo' ] )
+
+        } )
+
     }
 
     grunt.config.set( 'exec.git_add_dist', {
@@ -49,20 +88,6 @@ module.exports = function( grunt ) {
 
     } )
 
-    if ( !grunt.config.process( 'config.private' ) ) {
-
-        grunt.registerTask( 'git:create_github_repo', function() {
-
-            var curlCommand = grunt.config.process( 'curl -u \'cagosta\' https://api.github.com/user/repos -d \'{"name":"<%%= config.name.raw %>"}\'' )
-
-            grunt.config.set( 'exec.git_create_github_repo', {
-                command: curlCommand
-            } )
-
-            grunt.task.run( 'exec:git_create_github_repo' )
-
-        } )
-    }
 
     grunt.registerTask( 'git:init', function() {
 
@@ -75,8 +100,7 @@ module.exports = function( grunt ) {
     } )
 
 
-    grunt.registerTask( 'git:install', [ 'git:init', 'git:create_github_repo', 'git:initial_commit', 'git:add_origin' ] )
+    grunt.registerTask( 'git:install', [ 'git:init', 'git:create_remote_repo', 'git:initial_commit', 'git:add_origin' ] )
 
-    grunt.registerTask( 'git:private_install', [ 'git:init', 'git:initial_commit' ] )
 
 }
