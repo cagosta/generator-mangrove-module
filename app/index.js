@@ -32,13 +32,11 @@ var MangroveModuleGeneratorPrototype = {
             var cf = this.config = JSON.parse( this.readFileAsString( this.configFilePath ) )
             this.done = this.async()
 
-            this.prompt( [
-                {
-                    name: 'moduleName',
-                    message: 'Would you like call your module?',
-                    default: process.cwd().split( '/' ).pop()
-                }
-            ], function( p ) {
+            this.prompt( [ {
+                name: 'moduleName',
+                message: 'Would you like call your module?',
+                default: process.cwd().split( '/' ).pop()
+            } ], function( p ) {
                 cf.moduleName = p.moduleName
                 cf.name.raw = p.moduleName
                 cf.name.snake = _.underscored( cf.name.raw )
@@ -98,55 +96,45 @@ var MangroveModuleGeneratorPrototype = {
 
     initializePrompts: function() {
 
-        this.prompts = [
-            {
-                name: 'moduleName',
-                message: 'Would you like call your module?',
-                default: process.cwd().split( '/' ).pop()
-            },
-            {
-                name: 'cachedDeps',
-                type: 'confirm',
-                message: 'Use npm and bower cached modules for install ? ',
-                default: false
-            },
-            {
-                name: 'authorName',
-                message: 'What is your name, for credit ? ',
-                default: ''
-            },
-            {
-                name: 'authorEmail',
-                message: 'What is your email, for credit ? ',
-                default: ''
-            },
-            {
-                name: 'githubUser',
-                message: 'What is your github user name ?',
-                default: ''
-            },
-            {
-                name: 'deployHost',
-                message: 'What is the deploy host ?',
-                default: ''
-            },
-            {
-                name: 'deployDir',
-                message: 'What is the deploy dir ?',
-                default: ''
-            },
-            {
-                name: 'deployUser',
-                message: 'What is the deploy user ?',
-                default: ''
-            },
-            {
-                name: 'isFrontEndApp',
-                type: 'confirm',
-                message: 'Include front-end app backbone and tasks ( include stylus )',
-                default: true
-            }
-        ]
+        this.prompts = [ {
+            name: 'moduleName',
+            message: 'Would you like call your module?',
+            default: process.cwd().split( '/' ).pop()
+        }, {
+            name: 'cachedDeps',
+            type: 'confirm',
+            message: 'Use npm and bower cached modules for install ? ',
+            default: false
+        }, {
+            name: 'authorName',
+            message: 'What is your name, for credit ? ',
+            default: ''
+        }, {
+            name: 'authorEmail',
+            message: 'What is your email, for credit ? ',
+            default: ''
+        }, {
+            name: 'githubUser',
+            message: 'What is your github user name ?',
+            default: ''
+        }, {
+            name: 'deployHost',
+            message: 'What is the deploy host ?',
+            default: ''
+        }, {
+            name: 'deployDir',
+            message: 'What is the deploy dir ?',
+            default: ''
+        }, {
+            name: 'deployUser',
+            message: 'What is the deploy user ?',
+            default: ''
+        }, {
+            name: 'isFrontEndApp',
+            type: 'confirm',
+            message: 'Include front-end app backbone and tasks ( include stylus )',
+            default: true
+        } ]
 
     },
 
@@ -217,7 +205,6 @@ var MangroveModuleGeneratorPrototype = {
         this.template( 'test/index_build.html', 'test/index_build.html' )
         this.template( 'test/_test_main.js', 'test/test_main.js' )
         this.template( 'test/TestRunner.js', 'test/TestRunner.js' )
-        this.template( 'test/suites/_MainTestSuite.js', 'test/suites/MainTestSuite.js' )
         this.template( 'test/_index.html', 'test/index.html' )
 
     },

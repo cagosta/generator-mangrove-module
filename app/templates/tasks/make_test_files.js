@@ -4,6 +4,10 @@ var TestFileMaker = function( o ) {
     this.force = false
 
 
+    this.grunt = o.grunt
+
+    this.moduleName = this.grunt.mangroveConfig.get( 'name.raw' )
+
     this.filePath = o.filePath
     this.targetFolder = o.targetFolder
     this.template = o.template
@@ -36,7 +40,7 @@ var TestFileMaker = function( o ) {
     this.setTarget( 'exists', this.fs.existsSync( this.getTarget( 'path' ) ) )
 
 
-    this.setTarget( 'modulePath', this.getSource( 'path' ).replace( '.js', '' ).replace( 'app/', '' ) )
+    this.setTarget( 'modulePath', this.moduleName + '/' + this.getSource( 'path' ).replace( '.js', '' ).replace( 'app/', '' ) )
     this.setTarget( 'moduleName', this.getSource( 'basename' ) )
 
     this.setTarget( 'file', this.template
@@ -169,7 +173,7 @@ TestFilesMaker.prototype = {
 
     onFile: function( file, stat ) {
 
-        if ( /main.js/.test( file )  || /dashux.js/.test( file ) || /order.js/.test( file ) )
+        if ( /main.js/.test( file )  || /dashux.js/.test( file ) )
             return
 
         if ( !/.js/.test( file ) ) // only js!
@@ -181,6 +185,7 @@ TestFilesMaker.prototype = {
         this.fileMakers.push(
             new TestFileMaker( {
                 filePath: file,
+                grunt: this.grunt,
                 targetFolder: this.targetFolder,
                 template: this.template
             } )
