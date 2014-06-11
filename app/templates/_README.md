@@ -6,12 +6,12 @@
 
 
 ## Demo ##
-See [cagosta.github.io/<%= config.name.raw %>](http://cagosta.github.io/<%= config.name.raw %>)
+See [<%= config.github.user %>.github.io/<%= config.name.raw %>](<%= config.github.user %>.github.io/<%= config.name.raw %>)
 
 
 ## Install ##
 
-<%= config.name.raw %> is coded as [AMD module](http://requirejs.org/docs/whyamd.html) but can be installed with npm, bower or old-fashioned src=".min.js".
+<%= config.name.raw %> is developed as [AMD module](http://requirejs.org/docs/whyamd.html) but can be installed with npm, bower or old-fashioned src=".min.js".
 
 #### With npm: ####
 
