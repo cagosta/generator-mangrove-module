@@ -56,7 +56,6 @@
         "link": "http://opensource.org/licenses/MIT"
     } ],
     "scripts": {
-        "postinstall": "node postinstall.js",
         "test": "node_modules/.bin/grunt test"
     },
     "engines": {

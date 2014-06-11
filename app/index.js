@@ -157,7 +157,6 @@ var MangroveModuleGeneratorPrototype = {
         this.template( '_README.md', 'README.md' )
 
         this.copy( '_package.json', 'package.json' )
-        this.copy( 'postinstall.js', 'postinstall.js' )
         this.copy( '_credentials.json', '.credentials.json' )
         this.template( '_bower.json', 'bower.json' )
 
@@ -194,7 +193,6 @@ var MangroveModuleGeneratorPrototype = {
     makeTestFiles: function() {
 
         this.mkdir( 'test' )
-        this.mkdir( 'test/suites' )
         this.mkdir( 'dist' )
         this.mkdir( 'dist/build' )
         this.mkdir( 'dist/build/bower_components' )
@@ -203,6 +201,8 @@ var MangroveModuleGeneratorPrototype = {
         this.directory( 'test/assets', 'test/assets' )
         this.directory( 'tasks', 'tasks' )
         this.template( 'test/index_build.html', 'test/index_build.html' )
+        this.template( 'test/test.js.template', 'test/test.js.template' )
+        this.template( 'test/tests.json', 'test/tests.json' )
         this.template( 'test/_test_main.js', 'test/test_main.js' )
         this.template( 'test/TestRunner.js', 'test/TestRunner.js' )
         this.template( 'test/_index.html', 'test/index.html' )
