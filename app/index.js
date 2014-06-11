@@ -53,8 +53,10 @@ var MangroveModuleGeneratorPrototype = {
     },
 
     readConfigFromPrompts: function( cb ) {
+
         if ( this.config.github ) // already loaded, Yeoman generator strange behaviour
             return
+
         this.done = this.async()
         var cf = this.config = JSON.parse( this.readFileAsString( path.join( __dirname, 'templates/_config.json' ) ) )
 
@@ -77,8 +79,9 @@ var MangroveModuleGeneratorPrototype = {
 
             cf.author.name = p.authorName
             cf.author.email = p.authorEmail
-            cf.isFrontEndApp = p.isFrontEndApp
-            console.log( 'cf', cf )
+
+            cf.isFrontEndApp = true
+
             this.done()
 
         }.bind( this ) )
@@ -129,11 +132,6 @@ var MangroveModuleGeneratorPrototype = {
             name: 'deployUser',
             message: 'What is the deploy user ?',
             default: ''
-        }, {
-            name: 'isFrontEndApp',
-            type: 'confirm',
-            message: 'Include front-end app backbone and tasks ( include stylus )',
-            default: true
         } ]
 
     },
@@ -200,7 +198,6 @@ var MangroveModuleGeneratorPrototype = {
 
         this.directory( 'test/assets', 'test/assets' )
         this.directory( 'tasks', 'tasks' )
-        this.template( 'test/index_build.html', 'test/index_build.html' )
         this.template( 'test/test.js.template', 'test/test.js.template' )
         this.template( 'test/tests.json', 'test/tests.json' )
         this.template( 'test/_test_main.js', 'test/test_main.js' )

@@ -24,6 +24,7 @@ Usual flow
 ```
 mkdir [module_name] && cd [module_name]
 yo mangrove-module --config_file [../config-file-path].json # ( see below  )
+grunt postinstall # install bower dependencies, run tests
 grunt inject_rjsconfig # inject requirejs paths config into app/main.js and test/test_main.js
 grunt test # run test with phantomjs and mocha
 grunt git:install # git init; create github repository; git remote add origin git@github ..
@@ -47,17 +48,8 @@ grunt release # create and push tag, build standalone, run tests, send new versi
 - Add requirejs paths configuration thanks to grunt-bower-requirejs  
 - Create ready-to-use test files for phantomjs, mocha, chai, requirejs  
 - Create export file for node.js  
-- Build standalone dist files ( almond.js )  
-- Simple connect server ( useless ? )  
+- Build standalone dist files ( almond.js )
 
-### To do
-- Fix travis build & add Saucelabs tests
-- Extract tasks and put them in ( grunt ) module ? 
-- Test Generator ( hard ? )  
-- Clean server & livereload ( working ? )  
-- Is running npm install -g in a postinstall script dirty ?  
-- Reduce size when installed ( feasible ? node_modules 51MB, bower_components 19MB wtf ? )  
-- Check if English is correct ( any help would be welcomed )
 
 
 ### Config file  

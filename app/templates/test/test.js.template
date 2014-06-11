@@ -1,9 +1,9 @@
 define( [
-    '<%= modulePath %>'
+    '<%%= modulePath %>'
  ], function(  ) {
 
 
-    describe( '<%= moduleName %>', function() {
+    describe( '<%%= moduleName %>', function() {
 
     } )
 
